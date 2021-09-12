@@ -5,6 +5,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideTest {
@@ -21,8 +22,12 @@ public class SelenideTest {
         $("#wiki-tab").click();
 
         //Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
+        $(".js-wiki-more-pages-link").click();
+        $(byText("SoftAssertions")).shouldBe(Condition.visible);
+
+
         //Откройте страницу SoftAssertions
-        $x("//a[@id='user-content-chapters']/../following-sibling::ul/li/a[.='Soft assertions']").click();
+        $(byText("SoftAssertions")).click();
 
         //Проверьте что внутри есть пример кода для JUnit5
         $("#wiki-content").shouldHave(Condition.text("@ExtendWith({SoftAssertsExtension.class})\n" +
@@ -36,6 +41,7 @@ public class SelenideTest {
                 "    $(\"#second\").should(visible).click();\n" +
                 "  }\n" +
                 "}"));
+
     }
 }
 
