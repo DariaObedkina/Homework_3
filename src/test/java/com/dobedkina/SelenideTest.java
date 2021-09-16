@@ -22,11 +22,8 @@ public class SelenideTest {
         $("#wiki-tab").click();
 
         //Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
-        $(".js-wiki-more-pages-link").click();
-        $(byText("SoftAssertions")).shouldBe(Condition.visible);
-
-
         //Откройте страницу SoftAssertions
+        $(".js-wiki-more-pages-link").click();
         $(byText("SoftAssertions")).click();
 
         //Проверьте что внутри есть пример кода для JUnit5
